@@ -232,6 +232,9 @@ nav{
   .item-task{
     width: 100%;
   }
+  .footer  button{
+    opacity: 1 !important;
+  }
 }
 
 .container-form{
