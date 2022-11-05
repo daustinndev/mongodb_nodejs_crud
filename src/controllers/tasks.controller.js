@@ -1,9 +1,10 @@
 import Task from "../models/Task";
 
 export const getTasks = async (req, res) => {
-  const tasks = await await Task.find().sort({ 'createdAt': -1 }).lean();
+  const tasks = await await Task.find().sort({ createdAt: -1 }).lean();
   res.render("index", { tasks: tasks });
 };
+
 export const addTask = async (req, res) => {
   try {
     const task = Task(req.body);
@@ -33,9 +34,8 @@ export const deleteTask = async (req, res) => {
   const { uid } = req.params;
   try {
     await Task.findByIdAndDelete(uid);
-    res.redirect('/')
+    res.redirect("/");
   } catch (error) {
-
     console.log(error);
   }
 };
@@ -48,4 +48,28 @@ export const toggleDone = async (req, res) => {
 
   await task.save();
   res.json({ done: task.done });
+};
+
+export const searsh = async (req, res) => {
+  if (!req.body.searsh) {
+    res.redirect("/");
+  } else {
+    try {
+      const tasks = await Task.find({
+        $or: [
+          {
+            // description: { $regex: ".*" + req.body.searsh + ".*" },
+            title: { $regex: ".*" + req.body.searsh + ".*" },
+          },
+        ],
+      }).lean();
+      res.render("searsh", { tasks: tasks });
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  // console.log(req.body.searsh)
+
+  // res.send('Searsh')
 };

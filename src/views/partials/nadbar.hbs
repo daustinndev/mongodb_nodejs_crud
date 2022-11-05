@@ -1,23 +1,24 @@
 <div data-aos-delay="400" class="nadbar">
   <div class="container">
     <nav>
-      <a style="text-decoration: none;" href="/"><h1>CRUD Tareas</h1></a>
+      <a style="text-decoration: none;" href="/"><h1>Tareas</h1></a>
       <div class="searsh-input">
         <div class="icon-searsh">
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <form action="">
+        <form action="/task/searsh" method="post">
           <input
             class="form-control"
             placeholder="Buscar tarea"
-            required
-            id="title"
             type="search"
-            name="title"
+            name="searsh"
           />
         </form>
       </div>
-      <ul>
+      <div id="btn-menu" class="btn-menu-click">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <ul class="btn-menu-click" id="menu">
         <li>
           <a
             title="MongoDb Atlas"

@@ -1,3 +1,4 @@
+// animation AOS
 AOS.init({
   offset: 120,
   delay: 200,
@@ -5,9 +6,15 @@ AOS.init({
   easing: "ease",
   once: true,
   mirror: false,
-  anchorPlacement: "top-bottom", // defines which position of the
+  anchorPlacement: "top-bottom",
 });
 
+
+
+
+
+
+// loader list pinteres style
 var elem = document.querySelector(".list-tasks-container");
 imagesLoaded(elem, () => {
   var msnry = new Masonry(elem, {
@@ -23,19 +30,27 @@ imagesLoaded(elem, () => {
   });
 });
 
+
+
+
+
+
+
+// ajax
 $(document).ready(function () {
+
   $(".btn-doneToggle").click(function (e) {
     e.preventDefault();
     let uid = $(this).attr("data-id");
     $.post("/task/" + uid + "/toggleDone").done((data) => {
       if (data.done) {
         $(this).addClass("active");
-        $(this).attr("title", "Tarea realizada");
-        $(this).children("span").text("Bien");
+        $(this).attr("title", "Realizada");
+        $(this).children("span").text("Realizada");
       } else {
         $(this).removeClass("active");
-        $(this).attr("title", "Tarea no realizada");
-        $(this).children("span").text("No");
+        $(this).attr("title", "No realizada");
+        $(this).children("span").text("No realizada");
       }
     });
   });
@@ -54,4 +69,13 @@ $(document).ready(function () {
     })
     console.log('click modal')
   });
+
+  $(".btn-menu-click").click(function (e) {
+    if($('#menu').hasClass('active')){
+      $('#menu').removeClass('active')
+    }else{
+      $('#menu').addClass('active')
+    }
+  })
+
 });

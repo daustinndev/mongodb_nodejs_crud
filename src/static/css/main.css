@@ -64,12 +64,13 @@ p{
 }
 .nadbar{
   /* background-color: var(--background-color-200); */
-  padding: 10px 20px;
+  padding: 5px 20px;
   backdrop-filter: blur(5px);
   box-shadow: 0 0 40px 1px rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
   z-index: 10;
+  padding: 10px;
 }
 nav{
   display: flex;
@@ -84,8 +85,6 @@ nav{
   margin: 0;
 
 }
-.nadbar ul li{ }
-.nadbar ul li a{}
 .nadbar ul li a:hover{
   opacity: .8;
 }
@@ -101,7 +100,6 @@ nav{
 .container{
   max-width: var(--container);
   margin: 0 auto;
-  padding: 10px;
   position: relative;
 }
 
@@ -110,6 +108,7 @@ nav{
 .list-tasks{
   display: flex;
   flex-direction: column;
+  padding: 15px;
 }
 .list-tasks-container{
   justify-content: center;
@@ -207,7 +206,6 @@ nav{
   flex-direction: row;
   align-items: flex-start;
   gap: 20px;
-  
 }
 .container-tasks .list-tasks{
   width: 100%;
@@ -217,11 +215,25 @@ nav{
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 15px;
   width: 400px;
   position: sticky;
   top: 85px;
 }
+@media (max-width: 630px){
+  .container-tasks{
+    flex-direction: column;
+  }
+  .container-form{
+    top: 0 !important;
+    position: relative !important;
+    min-width: 100% !important;
+  }
+  .item-task{
+    width: 100%;
+  }
+}
+
 .container-form{
   max-width: 500px;
 }
@@ -233,6 +245,19 @@ nav{
 }
 .container-tasks .container-form form{
   margin-top: 10px;
+}
+.container-tasks .container-form .footer{
+  color: var(--color-text-400);
+  font-size: 14px;
+}
+.container-tasks .container-form .footer a{
+  color: var(--color-text-400);
+  text-decoration: none;
+  color: var(--background-color-600);
+  font-weight: 500;
+}
+.container-tasks .container-form .footer a:hover{
+  text-decoration: underline;
 }
 .form-group{
   display: flex;
@@ -251,7 +276,7 @@ nav{
   color: var(--color-text-100);
   outline: 0;
   border-radius: 8px;
-  padding: 7px;
+  padding: 8px;
   transition: .1s;
   font-size: 14px;
 }
@@ -304,11 +329,23 @@ textarea.form-control{
   padding: 10px;
   min-height: 100%;
 }
+.float-edit .modal-container form{
+  height: 100%;
+}
 .float-edit .modal-container textarea.form-control{
   resize: vertical;
+  height: 100%;
   max-height: 100% !important;
-  min-height: 100%;
+  min-height: 100% !important;
 }
+
+.float-edit .modal-container .form-group button{
+  opacity: 1;
+}
+.float-edit .modal-container .flex-btns{
+  display: flex;
+}
+
 
 
 
@@ -319,11 +356,12 @@ textarea.form-control{
   align-items: center;
   position: relative;
   margin: 0 auto;
-  width: 60%;
+  width: 50%;
+  padding: 0 10px;
 }
 .searsh-input .icon-searsh{
   position: absolute;
-  left: 10px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 14px;
@@ -333,6 +371,64 @@ textarea.form-control{
   width: 100%;
 }
 .searsh-input input{
+  padding: 8px;
   padding-left: 30px;
   width: 100%;
+}
+
+@media (max-width: 500px){
+  #menu{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    z-index: -1;
+    padding-top: 60px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .9);
+    backdrop-filter: blur(5px);
+    display: none;
+  }
+  #btn-menu{
+    font-size: 30px !important;
+    display: block !important;
+    margin-left: 10px;
+  }
+  .searsh-input input{
+    padding: 10px;
+    padding-left: 30px;
+  }
+  .searsh-input{
+    width: 100%;
+    padding: 0 !important;
+  }
+  nav > a{
+    display: none;
+  }
+  .searsh-input .icon-searsh{
+    left: 10px !important;
+  }
+
+}
+.active{
+  display: flex !important;
+}
+#btn-menu{
+  font-size: 30px;
+  display: none;
+}
+
+
+
+
+
+.empty{
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+.empty img{
+  width: 150px;
 }

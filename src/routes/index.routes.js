@@ -4,6 +4,7 @@ import {
   deleteTask,
   getTasks,
   getTaskUpdate,
+  searsh,
   setTaskEdit,
   toggleDone,
 } from "../controllers/tasks.controller";
@@ -15,5 +16,6 @@ router.get("/task/:uid/edit", getTaskUpdate);
 router.post("/task/:uid/edit", setTaskEdit);
 router.get("/task/:uid/delete", deleteTask);
 router.post("/task/:uid/toggleDone", toggleDone);
+router.post("/task/searsh/", searsh);
 
 export default router;
