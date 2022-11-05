@@ -1,19 +1,45 @@
-<ul>
-  {{#each tasks}}
-    <li>
-      <h1>{{title}}</h1>
-      <p>{{description}}</p>
+<div class="list-tasks">
+  <h1>Mis tareas</h1>
+  <div class="list-tasks-container">
+    {{#each tasks}}
+      <div class="item-task">
+        <div class="title">
+          <h2>{{title}}</h2>
+          <div class="btn-option">
+            <a href="/task/{{_id}}/edit">
+              <span><i class="fa-solid fa-pen"></i></span>
+              <p>Editar</p>
+            </a>
+            <a href="/task/{{_id}}/delete">
+              <span><i class="fa-solid fa-trash"></i></span>
+              <p>Eliminar</p>
+            </a>
+          </div>
+        </div>
+        <div class="body">
+          <p>{{description}}</p>
+        </div>
+        <div class="footer">
+          <div class="float-done">
+            {{#if done}}
+              <button class="active">
+                <a title="Tarea no realizada" href="/task/{{_id}}/toggleDone">
+                  <i class="fa-solid fa-check"></i>
+                </a>
+              </button>
 
-      {{#if done}}
-        <a href="/task/{{_id}}/toggleDone">Undone</a>
-      {{else}}
-        <a href="/task/{{_id}}/toggleDone">Done</a>
-      {{/if}}
-
-      <a href="/task/{{_id}}/edit">edit</a>
-      <a href="/task/{{_id}}/delete">Delete</a>
-    </li>
-  {{else}}
-    <h2>No tasks</h2>
-  {{/each}}
-</ul>
+            {{else}}
+              <button>
+                <a title="Tarea Realizada" href="/task/{{_id}}/toggleDone">
+                  <i class="fa-solid fa-xmark"></i>
+                </a>
+              </button>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <h2>No tasks</h2>
+    {{/each}}
+  </div>
+</div>

@@ -1,3 +1,150 @@
+:root{
+  --background-color-100: #0d1117;
+  --background-color-200: #161b22;
+  --background-color-300: #3b4655;
+  --background-color-400: #2585f5;
+
+  --border-color-100: #30363d;
+  --border-color-200: #424a53;
+  
+  --color-text-100: #ffffff;
+  --color-text-200: #d4d8dd;
+  --color-text-300: #c7cad1;
+  --color-text-400: #848c92;
+
+  --container: 1100px;
+}
 body{
-  background-color: rgb(22, 22, 24);
+  background-color: var(--background-color-100);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--color-text-100);
+}
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+}
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+p{
+  margin: 0;
+  padding: 0;
+}
+.nadbar{
+  background-color: var(--background-color-200);
+  padding: 10px 20px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+nav{
+  display: flex;
+  align-items: center;
+}
+.nadbar ul{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  margin-left: auto;  
+}
+.nadbar ul li{ }
+.nadbar ul li a{}
+.nadbar ul li a:hover{
+  opacity: .8;
+}
+.nadbar ul li a svg{
+ width: 30px;
+ height: 30px;
+}
+.nadbar h1{
+  color: var(--color-text-200);
+  font-size: 25px;
+  font-weight: normal;
+}
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 10px;
+}
+
+
+/* List task */
+.list-tasks{
+  display: flex;
+  flex-direction: column;
+}
+.list-tasks-container{
+justify-content: center;
+}
+.item-task{
+  display: flex;
+  flex-direction: column;
+  background-color: #161b22;
+  border: 1px solid var(--border-color-100);
+  border-radius: 10px;
+  width: 250px;
+  margin: 8px;
+  transition: .2s;
+  position: relative;
+}
+.item-task:hover{
+  border: 1px solid var(--border-color-200);
+}
+.item-task:hover .footer .float-done button{
+  opacity: 1;
+}
+.item-task .title{
+  padding: 10px;
+}
+.item-task .body{
+
+  padding: 0 10px 10px 10px;
+}
+.item-task .body p {
+  
+}
+.btn-option{
+  display: none;
+}
+.btn-option a{
+  display: flex;
+}
+
+.footer{
+
+}
+.footer .float-done {
+  position: absolute;
+  bottom: -10px;
+  right: 0px;
+}
+.footer .float-done button{
+  width: 30px;
+  height: 30px;
+  background-color:var(--background-color-300);
+  color: var(--color-text-100);
+  border-radius: 50%;
+  cursor: pointer;
+  outline: inherit;
+  border: 0;
+  opacity: 0;
+  transition: .2s;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+}
+.footer .float-done .active{
+  background-color:var(--background-color-400);
+  opacity: 1;
+  transition: .2s;
+}
+.footer .float-done button a{
+  color: var(--color-text-100);
+  font-size: 15px;
 }
