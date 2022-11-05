@@ -1,7 +1,7 @@
 import Task from "../models/Task";
 
 export const getTasks = async (req, res) => {
-  const tasks = await await Task.find().lean();
+  const tasks = await await Task.find().sort({ 'createdAt': -1 }).lean();
   res.render("index", { tasks: tasks });
 };
 export const addTask = async (req, res) => {
@@ -13,6 +13,7 @@ export const addTask = async (req, res) => {
     console.log(error);
   }
 };
+
 export const getTaskUpdate = async (req, res) => {
   try {
     const task = await Task.findById(req.params.uid).lean();
@@ -21,6 +22,7 @@ export const getTaskUpdate = async (req, res) => {
     console.log(error.message);
   }
 };
+
 export const setTaskEdit = async (req, res) => {
   const { uid } = req.params;
   await Task.findByIdAndUpdate(uid, req.body);

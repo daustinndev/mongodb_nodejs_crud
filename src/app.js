@@ -13,6 +13,7 @@ const exphbs = create({
   layoutsDir: path.join(app.get("views"), "layouts"),
   partialsDir: path.join(app.get("views"), "partials"),
   defaultLayout: "main",
+  helpers: require('./helpers/timeAgo')
 });
 
 app.engine(".hbs", exphbs.engine);

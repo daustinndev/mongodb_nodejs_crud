@@ -1,25 +1,53 @@
 :root{
-  --background-color-100: #0d1117;
+  --background-color-000: #01040969;
+  --background-color-100: linear-gradient(90deg, rgba(13,17,23,1) 0%, rgba(6,32,11,1) 100%);
   --background-color-200: #161b22;
   --background-color-300: #15181b;
   --background-color-400: #2585f5;
+  --background-colot-500: #161b2228;
+  --background-color-600: #2ea043;
+  --background-color-700: #258837;
 
   --border-color-100: #30363d;
   --border-color-200: #424a53;
+  --border-color-300: #2585f5;
   
   --color-text-100: #ffffff;
   --color-text-200: #d4d8dd;
-  --color-text-300: #c7cad1;
+  --color-text-300: #c9d1d9;
   --color-text-400: #848c92;
 
-  --container: 1100px;
+  --container: 1200px;
 }
+
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color-200);
+  border: 4px solid rgba(6,32,11,1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-corner{
+  background-color: transparent;
+  border: transparent;
+}
+::-webkit-scrollbar-track{
+  background-color: transparent;
+  border: transparent;
+}
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+::-webkit-scrollbar {
+  width: 15px;
+  background-color:rgba(6,32,11,1);
+}
+
 body{
-  background-color: var(--background-color-100);
+  background: var(--background-color-100);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   color: var(--color-text-100);
 }
 h1, h2, h3, h4, h5, h6{
@@ -35,9 +63,10 @@ p{
   padding: 0;
 }
 .nadbar{
-  background-color: var(--background-color-200);
+  /* background-color: var(--background-color-200); */
   padding: 10px 20px;
-  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 40px 1px rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -53,7 +82,7 @@ nav{
   align-items: center;
   list-style: none;
   margin: 0;
-  margin-left: auto;  
+
 }
 .nadbar ul li{ }
 .nadbar ul li a{}
@@ -73,6 +102,7 @@ nav{
   max-width: var(--container);
   margin: 0 auto;
   padding: 10px;
+  position: relative;
 }
 
 
@@ -82,12 +112,12 @@ nav{
   flex-direction: column;
 }
 .list-tasks-container{
-justify-content: center;
+  justify-content: center;
 }
 .item-task{
   display: flex;
   flex-direction: column;
-  background-color: #161b22;
+  background-color: var(--background-colot-500);
   border: 1px solid var(--border-color-100);
   border-radius: 10px;
   width: 250px;
@@ -95,39 +125,56 @@ justify-content: center;
   transition: .2s;
   position: relative;
 }
+
 .item-task:hover{
   border: 1px solid var(--border-color-200);
 }
 .item-task:hover .footer button{
   opacity: 1;
 }
+
+.iframe::after{
+  content: '';
+  display: none;
+}
+
 .item-task .title{
   padding: 10px;
 }
+.item-task .title h2{
+  color: var(--color-text-200);
+  font-weight: 500;
+  font-size: 20px;
+}
+.item-task .title span{
+  font-size: 12px;
+  color: var(--color-text-300);
+}
+.item-task .title span i{
+  margin-right:5px;
+}
+.item-task:hover .body{
+  display: block;
+}
 .item-task .body{
+  padding: 0 20px 0px 20px;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
 
-  padding: 0 10px 10px 10px;
 }
-.item-task .body p {
-  
-}
-.btn-option{
-  display: none;
-}
-.btn-option a{
-  display: flex;
+.item-task .body::-webkit-scrollbar-thumb {
+  border: 4px solid var(--background-color-200);
 }
 
 .footer{
-  position: absolute;
-  bottom: -10px;
+  /* position: absolute; */
+  padding: 10px;
   right: 0px;
   display: flex;
   gap: 5px;
 }
-.footer .float-done {
-  
-}
+
 .footer  button{
   min-width: 35px;
   height: 35px;
@@ -142,12 +189,150 @@ justify-content: center;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
   padding: 10px;
 }
+.footer .btn-edit{
+  max-width: 35px;
+}
 .footer .active{
-  background-color:var(--background-color-400);
+  background-color:var(--background-color-600);
   opacity: 1;
   transition: .2s;
 }
 .footer  button a{
   color: var(--color-text-100);
   font-size: 15px;
+}
+
+.container-tasks{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  
+}
+.container-tasks .list-tasks{
+  width: 100%;
+}
+
+.container-tasks .container-form{
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 400px;
+  position: sticky;
+  top: 85px;
+}
+.container-form{
+  max-width: 500px;
+}
+.container-tasks .container-form h1{
+  font-weight: 400;
+  font-size: 20px;
+  border-bottom: 1px solid var(--border-color-100);
+  padding-bottom: 10px;
+}
+.container-tasks .container-form form{
+  margin-top: 10px;
+}
+.form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.form-group label{
+  color: var(--color-text-300);
+  font-weight: 500;
+  font-size: 14px;
+}
+.form-control{
+  background-color: var(--background-color-000);
+  border: 1px solid var(--border-color-100);
+  color: var(--color-text-100);
+  outline: 0;
+  border-radius: 8px;
+  padding: 7px;
+  transition: .1s;
+  font-size: 14px;
+}
+textarea.form-control{
+  resize: vertical;
+  min-height: 200px;
+  max-height: 300px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+}
+.form-control:focus{
+  border: 1px solid var(--border-color-300);
+  background-color: var(--background-color-100);
+  box-shadow: 0 0 1px 1px var(--border-color-300);
+}
+.btn{
+  outline: 0;
+  background-color: var(--background-color-300);
+  padding: 8px 0;
+  border: 0;
+  border-radius: 7px;
+  color: var(--color-text-100);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn.btn-primary{
+  color: var(--color-text-100);
+  background-color: var(--background-color-600);
+}
+.btn.btn-primary:hover{
+  background-color: var(--background-color-700);
+}
+.btn.btn-default{
+  background-color: var(--background-color-200);
+  border: 1px solid var(--border-color-100);
+}
+
+.float-edit .modal-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: var(--background-color-200);
+  border-radius: 8px;
+  min-height: 100%;
+}
+.float-edit .modal-container{
+  padding: 10px;
+  min-height: 100%;
+}
+.float-edit .modal-container textarea.form-control{
+  resize: vertical;
+  max-height: 100% !important;
+  min-height: 100%;
+}
+
+
+
+
+/* searsh */
+.searsh-input{
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  width: 60%;
+}
+.searsh-input .icon-searsh{
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--color-text-300);
+}
+.searsh-input form{
+  width: 100%;
+}
+.searsh-input input{
+  padding-left: 30px;
+  width: 100%;
 }

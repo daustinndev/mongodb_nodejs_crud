@@ -3,7 +3,7 @@ AOS.init({
   delay: 200,
   duration: 1000,
   easing: "ease",
-  once: false,
+  once: true,
   mirror: false,
   anchorPlacement: "top-bottom", // defines which position of the
 });
@@ -24,7 +24,6 @@ imagesLoaded(elem, () => {
 });
 
 $(document).ready(function () {
-
   $(".btn-doneToggle").click(function (e) {
     e.preventDefault();
     let uid = $(this).attr("data-id");
@@ -45,8 +44,14 @@ $(document).ready(function () {
     e.preventDefault();
     let uid = $(this).attr("data-id");
     $.get("/task/" + uid + "/delete").done((data) => {
-      window.location = '/';
+      window.location = "/";
     });
   });
 
+  $(".btn-modal-edit").click(function(e) {
+    $(this).siblings('.edit-modal-container').css({
+      display: 'block'
+    })
+    console.log('click modal')
+  });
 });

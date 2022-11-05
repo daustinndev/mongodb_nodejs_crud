@@ -2,58 +2,90 @@
   <h1>Mis tareas</h1>
   <div class="list-tasks-container">
     {{#each tasks}}
-      <div class="item-task">
-        <div class="title">
-          <h2>{{title}}</h2>
-          <div class="btn-option">
-            <a href="/task/{{_id}}/edit">
-              <span><i class="fa-solid fa-pen"></i></span>
-              <p>Editar</p>
-            </a>
-            <a href="/task/{{_id}}/delete">
-              <span><i class="fa-solid fa-trash"></i></span>
-              <p>Eliminar</p>
-            </a>
+      <div data-aos="fade" class="item-task">
+        <div class="content">
+          <div class="title">
+            <h2>{{title}}</h2>
+            <span>
+              <i class="fa-regular fa-clock"></i>{{timeago createdAt}}</span>
           </div>
-        </div>
-        <div class="body">
-          <p>{{description}}</p>
-        </div>
-        <div class="footer">
-          <div class="float-delete">
-            <button class="btn-delete" data-id="{{_id}}">
-              <i class="fa-solid fa-trash"></i>
-            </button>
+          <div class="body">
+            <p>{{description}}</p>
           </div>
-          <div class="float-edit">
-            <button class="btnEdit">
-              <i class="fa-solid fa-pen"></i>
-            </button>
-          </div>
-          <div class="float-done">
-            {{#if done}}
-              <button
-                title="Tarea no realizada"
-                class="btn-doneToggle active"
-                data-id="{{_id}}"
-              >
-                <i class="fa-solid fa-circle-notch"></i>
-                <span class="text-value">Bien</span>
-              </button>
+          <div class="footer">
+            <div class="float-done">
+              {{#if done}}
+                <button
+                  title="Tarea no realizada"
+                  class="btn-doneToggle active"
+                  data-id="{{_id}}"
+                >
+                  <i class="fa-solid fa-circle-notch"></i>
+                  <span class="text-value">Bien</span>
+                </button>
 
-            {{else}}
-              <button
-                title="Tarea realizada"
-                class="btn-doneToggle"
-                data-id="{{_id}}"
-              >
-                <i class="fa-solid fa-circle-notch"></i>
-                <span class="text-value">No</span>
+              {{else}}
+                <button
+                  title="Tarea realizada"
+                  class="btn-doneToggle"
+                  data-id="{{_id}}"
+                >
+                  <i class="fa-solid fa-circle-notch"></i>
+                  <span class="text-value">No</span>
+                </button>
+              {{/if}}
+            </div>
+            <div class="float-delete">
+              <button class="btn-delete" data-id="{{_id}}">
+                <i class="fa-solid fa-trash"></i>
               </button>
-            {{/if}}
+            </div>
+            <div class="float-edit">
+              <button class="btn-edit btn-modal-edit">
+                {{!-- <a href="/task/{{_id}}/edit"> --}}
+                <i class="fa-solid fa-pen"></i>
+                {{! </a> }}
+              </button>
+              <div class="modal-container edit-modal-container">
+                <form action="/task/{{_id}}/edit" method="POST">
+                  <div class="form-group">
+                    <input
+                      class="form-control"
+                      value="{{title}}"
+                      required
+                      id="title"
+                      type="text"
+                      name="title"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <textarea
+                      style="max-height: 50px !important;"
+                      class="form-control"
+                      required
+                      id="description"
+                      name="description"
+                    >{{description}}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                    >Actualizar</button>
+                  </div>
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="btn btn-default"
+                    >Cancelar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="iframe"></div>
     {{else}}
       <h2>No tasks</h2>
     {{/each}}
