@@ -20,19 +20,35 @@
           <p>{{description}}</p>
         </div>
         <div class="footer">
+          <div class="float-delete">
+            <button class="btn-delete" data-id="{{_id}}">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+          <div class="float-edit">
+            <button class="btnEdit">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+          </div>
           <div class="float-done">
             {{#if done}}
-              <button class="active">
-                <a title="Tarea no realizada" href="/task/{{_id}}/toggleDone">
-                  <i class="fa-solid fa-check"></i>
-                </a>
+              <button
+                title="Tarea no realizada"
+                class="btn-doneToggle active"
+                data-id="{{_id}}"
+              >
+                <i class="fa-solid fa-circle-notch"></i>
+                <span class="text-value">Bien</span>
               </button>
 
             {{else}}
-              <button>
-                <a title="Tarea Realizada" href="/task/{{_id}}/toggleDone">
-                  <i class="fa-solid fa-xmark"></i>
-                </a>
+              <button
+                title="Tarea realizada"
+                class="btn-doneToggle"
+                data-id="{{_id}}"
+              >
+                <i class="fa-solid fa-circle-notch"></i>
+                <span class="text-value">No</span>
               </button>
             {{/if}}
           </div>

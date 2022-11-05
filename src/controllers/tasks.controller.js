@@ -1,6 +1,5 @@
 import Task from "../models/Task";
 
-
 export const getTasks = async (req, res) => {
   const tasks = await await Task.find().lean();
   res.render("index", { tasks: tasks });
@@ -13,7 +12,7 @@ export const addTask = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 export const getTaskUpdate = async (req, res) => {
   try {
     const task = await Task.findById(req.params.uid).lean();
@@ -21,17 +20,23 @@ export const getTaskUpdate = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 export const setTaskEdit = async (req, res) => {
   const { uid } = req.params;
   await Task.findByIdAndUpdate(uid, req.body);
   res.redirect("/");
-}
+};
+
 export const deleteTask = async (req, res) => {
   const { uid } = req.params;
-  await Task.findByIdAndDelete(uid);
-  res.redirect("/");
-}
+  try {
+    await Task.findByIdAndDelete(uid);
+    res.redirect('/')
+  } catch (error) {
+
+    console.log(error);
+  }
+};
 
 export const toggleDone = async (req, res) => {
   const { uid } = req.params;
@@ -40,6 +45,5 @@ export const toggleDone = async (req, res) => {
   task.done = !task.done;
 
   await task.save();
-
-  res.redirect("/");
-}
+  res.json({ done: task.done });
+};

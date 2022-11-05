@@ -14,6 +14,6 @@ router.post("/task/add", addTask);
 router.get("/task/:uid/edit", getTaskUpdate);
 router.post("/task/:uid/edit", setTaskEdit);
 router.get("/task/:uid/delete", deleteTask);
-router.get("/task/:uid/toggleDone", toggleDone);
+router.post("/task/:uid/toggleDone", toggleDone);
 
 export default router;

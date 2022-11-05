@@ -1,7 +1,7 @@
 :root{
   --background-color-100: #0d1117;
   --background-color-200: #161b22;
-  --background-color-300: #3b4655;
+  --background-color-300: #15181b;
   --background-color-400: #2585f5;
 
   --border-color-100: #30363d;
@@ -98,7 +98,7 @@ justify-content: center;
 .item-task:hover{
   border: 1px solid var(--border-color-200);
 }
-.item-task:hover .footer .float-done button{
+.item-task:hover .footer button{
   opacity: 1;
 }
 .item-task .title{
@@ -119,32 +119,35 @@ justify-content: center;
 }
 
 .footer{
-
-}
-.footer .float-done {
   position: absolute;
   bottom: -10px;
   right: 0px;
+  display: flex;
+  gap: 5px;
 }
-.footer .float-done button{
-  width: 30px;
-  height: 30px;
-  background-color:var(--background-color-300);
+.footer .float-done {
+  
+}
+.footer  button{
+  min-width: 35px;
+  height: 35px;
+  background-color:var(--background-color-100);
+  border: 1px solid var(--border-color-100);
   color: var(--color-text-100);
-  border-radius: 50%;
+  border-radius: 20px;
   cursor: pointer;
   outline: inherit;
-  border: 0;
   opacity: 0;
   transition: .2s;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+  padding: 10px;
 }
-.footer .float-done .active{
+.footer .active{
   background-color:var(--background-color-400);
   opacity: 1;
   transition: .2s;
 }
-.footer .float-done button a{
+.footer  button a{
   color: var(--color-text-100);
   font-size: 15px;
 }

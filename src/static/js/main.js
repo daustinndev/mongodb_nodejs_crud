@@ -22,3 +22,31 @@ imagesLoaded(elem, () => {
     // options
   });
 });
+
+$(document).ready(function () {
+
+  $(".btn-doneToggle").click(function (e) {
+    e.preventDefault();
+    let uid = $(this).attr("data-id");
+    $.post("/task/" + uid + "/toggleDone").done((data) => {
+      if (data.done) {
+        $(this).addClass("active");
+        $(this).attr("title", "Tarea realizada");
+        $(this).children("span").text("Bien");
+      } else {
+        $(this).removeClass("active");
+        $(this).attr("title", "Tarea no realizada");
+        $(this).children("span").text("No");
+      }
+    });
+  });
+
+  $(".btn-delete").click(function (e) {
+    e.preventDefault();
+    let uid = $(this).attr("data-id");
+    $.get("/task/" + uid + "/delete").done((data) => {
+      window.location = '/';
+    });
+  });
+
+});
