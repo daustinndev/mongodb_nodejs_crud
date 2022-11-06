@@ -5,10 +5,13 @@ const taskSchema = new Schema(
     title: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
     },
     description: String,
+    username: {
+      type: String,
+      default: "Default",
+    },
     done: {
       type: Boolean,
       default: false,

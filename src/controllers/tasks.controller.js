@@ -5,6 +5,26 @@ export const getTasks = async (req, res) => {
   res.render("index", { tasks: tasks });
 };
 
+export const getUserTasks = async (req, res) => {
+  if (!req.params.username) {
+    res.redirect("/");
+  } else {
+    try {
+      const tasks = await Task.find({
+        $or: [
+          {
+            // description: { $regex: ".*" + req.body.searsh + ".*" },
+            username: { $regex: ".*" + req.params.username + ".*" },
+          },
+        ],
+      }).lean();
+      res.render("usersTasks", { tasks: tasks });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
+
 export const addTask = async (req, res) => {
   try {
     const task = Task(req.body);
@@ -65,7 +85,7 @@ export const searsh = async (req, res) => {
       }).lean();
       res.render("searsh", { tasks: tasks });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 

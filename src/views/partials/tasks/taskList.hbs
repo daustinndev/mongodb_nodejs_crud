@@ -6,8 +6,10 @@
         <div class="content">
           <div class="title">
             <h2>{{title}}</h2>
+            <a href="/user/{{username}}/listTask">{{username}}</a>
             <span>
-              <i class="fa-regular fa-clock"></i>{{timeago createdAt}}</span>
+              <i class="fa-regular fa-clock"></i>{{timeago createdAt}}
+            </span>
           </div>
           <div class="body">
             <p>{{description}}</p>
@@ -90,7 +92,7 @@
       <div class="iframe"></div>
     {{else}}
       <div class="empty">
-        <img src="/images/empty.png" alt="">
+        <img src="/images/empty.png" alt="" />
         <h4>No hay tareas</h4>
       </div>
     {{/each}}
